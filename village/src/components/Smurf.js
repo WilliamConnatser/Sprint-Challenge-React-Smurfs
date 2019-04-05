@@ -25,6 +25,7 @@ class Smurf extends Component {
                 <p>{this.props.smurf.age}
                     smurf years old</p>
                 <button onClick={this.toggleEditMode}>Edit Smurf</button>
+                <button onClick={this.props.deleteSmurfHandler} id={this.props.smurf.id}>Delete Smurf</button>
                 {this.state.editMode
                     ? <SmurfForm
                             smurf={this.props.smurf}
@@ -37,6 +38,7 @@ class Smurf extends Component {
 
 Smurf.defaultProps = {
     editSmurfHandler: () => null,
+    deleteSmurfHandler: () => null,
     smurf: {
         id: '',
         name: '',
