@@ -6,6 +6,7 @@ import './App.css';
 import NavBar from './components/NavBar';
 import SmurfForm from './components/SmurfForm';
 import Smurfs from './components/Smurfs';
+import Smurf from './components/Smurf';
 
 class App extends Component {
     constructor(props) {
@@ -59,6 +60,12 @@ class App extends Component {
             });
     }
 
+    getSmurf() {
+      const id = this.props.location.pathname.slice(8);
+
+      return this.state.smurfs.find(smurf=> smurf)
+    }
+
     render() {
         return (
             <div className="App">
@@ -73,6 +80,7 @@ class App extends Component {
                     smurfs={this.state.smurfs}
                     editSmurfHandler={this.editSmurfHandler}
                     deleteSmurfHandler={this.deleteSmurfHandler}/>}/>
+
             </div>
         )
     }
