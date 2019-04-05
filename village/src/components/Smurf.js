@@ -1,20 +1,48 @@
-import React from 'react';
+import React, {Component} from 'react';
+import SmurfForm from './SmurfForm';
 
-const Smurf = props => {
-  return (
-    <div className="Smurf">
-      <h3>{props.name}</h3>
-      <strong>{props.height} tall</strong>
-      <p>{props.age} smurf years old</p>
-    </div>
-  );
+class Smurf extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            editMode: false
+        }
+    }
+
+    toggleEditMode = () => {
+        this.setState({
+            editMode: !this.state.editMode
+        });
+    }
+
+    render() {
+        return (
+            <div className="Smurf">
+                <h3>{this.props.smurf.name}</h3>
+                <strong>{this.props.smurf.height}
+                    tall</strong>
+                <p>{this.props.smurf.age}
+                    smurf years old</p>
+                <button onClick={this.toggleEditMode}>Edit Smurf</button>
+                {this.state.editMode
+                    ? <SmurfForm
+                            smurf={this.props.smurf}
+                            editSmurfHandler={this.props.editSmurfHandler}/>
+                    : null}
+            </div>
+        );
+    }
 };
 
 Smurf.defaultProps = {
-  name: '',
-  height: '',
-  age: ''
+    editSmurfHandler: () => null,
+    smurf: {
+        id: '',
+        name: '',
+        height: '',
+        age: ''
+    }
 };
 
 export default Smurf;
-

@@ -39,12 +39,24 @@ class App extends Component {
       });
   }
 
+  editSmurfHandler = (smurfId, smurfInfo) => {
+    axios.put(`http://localhost:3333/smurfs/${smurfId}`, smurfInfo)
+      .then(response => {
+        this.setState({
+          smurfs: response.data
+        });
+      })
+      .catch(function(error){
+        console.log(error);
+      });
+  }
+
   render() {
     return (
       <div className="App">
         <NavBar />
         <Route path="/add-smurf" render={_ => <SmurfForm addSmurfHandler={this.addSmurfHandler}/>} />
-        <Route exact path="/" render={_ => <Smurfs smurfs={this.state.smurfs} />} />
+        <Route exact path="/" render={_ => <Smurfs smurfs={this.state.smurfs} editSmurfHandler={this.editSmurfHandler}/>} />
       </div>
     );
   }
